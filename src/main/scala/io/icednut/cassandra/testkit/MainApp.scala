@@ -1,6 +1,7 @@
 package io.icednut.cassandra.testkit
 
 import java.io.File
+import java.util.concurrent.CountDownLatch
 
 import akka.persistence.cassandra.testkit.CassandraLauncher
 
@@ -15,4 +16,6 @@ object MainApp extends App {
   sys.addShutdownHook {
     CassandraLauncher.stop()
   }
+  println("Started Cassandra, press Ctrl + C to kill")
+  new CountDownLatch(1).await()
 }
